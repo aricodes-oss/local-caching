@@ -1,0 +1,1 @@
+Acquire::http::ProxyAutoDetect "/usr/local/bin/apt-proxy-checker.sh";

@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Install netcat
+      apt:
+        update_cache: true
+        pkg:
+          - netcat
+
+    - name: Copy detection script
+      copy:
+        src: ./apt-proxy-checker.sh
+        dest: /usr/local/bin/apt-proxy-checker.sh
+        mode: '0755'
+
+    - name: Copy configuration
+      copy:
+        src: ./apt-proxy-conf
+        dest: /etc/apt/apt.conf.d/00proxy
+        mode: '0644'
+
+    - name: Copy daemon.json
+      copy:
+        src: ./docker-daemon.json
+        dest: /etc/docker/daemon.json
+        mode: '0644'
